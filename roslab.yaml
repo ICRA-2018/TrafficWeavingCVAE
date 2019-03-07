@@ -1,16 +1,18 @@
 name: traffic-weaving-cvae
 
-distro: kinetic
+base: 
+  ubuntu: 16.04
+  ros: kinetic-ros-base
 
 build: catkin_build
 
-repos:
+repo:
   - ppa:chronitis/jupyter
 
-packages:
+apt:
   - ijulia
 
-python-packages:
+pip:
   - tensorflow==1.3
   - pandas
   - numpy
