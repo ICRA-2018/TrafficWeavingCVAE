@@ -1,2 +1,2 @@
 #!/bin/sh
-docker run --rm  -p 8888:8888 traffic-weaving-cvae
+docker run --rm   -p 8888:8888 traffic-weaving-cvae

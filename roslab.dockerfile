@@ -87,6 +87,8 @@ RUN apt-add-repository ppa:chronitis/jupyter
 RUN apt-get -o Acquire::ForceIPv4=true update \
  && apt-get -o Acquire::ForceIPv4=true install -yq --no-install-recommends \
     ijulia \
+    python-setuptools \
+    python-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -97,10 +99,13 @@ RUN pip install --upgrade pip
 RUN pip install  \
     tensorflow==1.3 \
     pandas \
-    numpy \
+    numpy==1.12 \
     matplotlib \
     sympy \
-    h5py
+    h5py \
+    ipython==5.8.0 \
+    ipykernel==4.10.0 \
+    tornado==5.1.1
 
 ##################################### COPY #####################################
 
@@ -120,6 +125,10 @@ RUN cd ${HOME}/catkin_ws \
  && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && catkin build"
 
 RUN echo "source ~/catkin_ws/devel/setup.bash" >> ${HOME}/.bashrc
+
+################################### CUSTOM #####################################
+
+RUN python2 -m ipykernel install
 
 ##################################### TAIL #####################################
 
